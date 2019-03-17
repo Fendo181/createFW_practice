@@ -48,7 +48,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //エラーがなければ保存する
     if (count($erros) > 0) {
-        $sql = "INSERT INTO bbs_online (
+        $sql = "INSERT INTO post (
             `name`, `comment`, `created_at` 
         ) VALUES (
             $name, '$comment', 'date('Y-m-d H:i:s')'
