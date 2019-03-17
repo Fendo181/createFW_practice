@@ -84,5 +84,32 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="submit" name="submit" value="送信する">
         </P>
     </form>
+    <!-- 投稿された一言の表示   -->
+    <?php
+
+    $sql = " SELECT * FROM `post` ORDER BY `created_at` DESC" ;
+    $result = $pdo->query($sql);
+    $posts = $result->fetchAll();
+
+    ?>
+    <?php if($result !== false) : ?>
+      <ul>
+          <?php foreach ($posts as $post) : ?>
+            <li>
+                <p>
+                    名前:<?php echo htmlspecialchars($post['name'],ENT_QUOTES,'UTF-8')?> (<?php echo htmlspecialchars($post['created_at'],ENT_QUOTES,'UTF-8')?>)
+                </p>
+                <p>
+                    コメント:<?php echo htmlspecialchars($post['comment'],ENT_QUOTES,'UTF-8')?>
+                </p>
+            </li>
+          <?php endforeach; ?>
+      </ul>
+    <?php endif; ?>
+
+    <?php
+    //取得結果を表示して接続を閉じる
+    $pdo = null;
+    ?>
 </body>
 </html>
