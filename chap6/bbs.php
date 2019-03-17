@@ -1,8 +1,5 @@
 <?php
-// 一個階層が上のvendorディレクトリを指定する
 define('DIR_VENDOR', dirname(__DIR__) .'/vendor/');
-
-// vendorディレクトリからautoload.phpを呼び出して実行する
 require_once(DIR_VENDOR . 'autoload.php');
 
 // ref:https://github.com/vlucas/phpdotenv
@@ -67,7 +64,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
 
 <html>
 <head>
