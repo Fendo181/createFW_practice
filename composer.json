@@ -1,0 +1,13 @@
+{
+    "name": "endu/mvcfw",
+    "authors": [
+        {
+            "name": "Fendo181",
+            "email": "fendo181git@gmail.com"
+        }
+    ],
+    "require": {
+        "psy/psysh": "^0.9.9",
+        "vlucas/phpdotenv": "^3.3"
+    }
+}
