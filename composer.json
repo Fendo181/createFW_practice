@@ -9,5 +9,8 @@
     "require": {
         "psy/psysh": "^0.9.9",
         "vlucas/phpdotenv": "^3.3"
+    },
+    "require-dev": {
+        "phpdocumentor/phpdocumentor": "2.*"
     }
 }
