@@ -11,6 +11,7 @@
         "vlucas/phpdotenv": "^3.3"
     },
     "require-dev": {
-        "phpdocumentor/phpdocumentor": "2.*"
+        "phpdocumentor/phpdocumentor": "2.*",
+        "jms/serializer": "^1.7.0"
     }
 }
