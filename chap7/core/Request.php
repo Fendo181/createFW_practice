@@ -95,7 +95,7 @@ class Request
         if(0 === strpos($request_uri, $script_path)){
             return $script_path;
         }else if (strpos($request_uri, dirname($script_path))){
-            return rtrim( dirname($script_path_name),'/');
+            return rtrim( dirname($script_path),'/');
         }
 
     }
