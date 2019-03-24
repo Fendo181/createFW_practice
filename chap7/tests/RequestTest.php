@@ -11,14 +11,19 @@ class RequestTest extends TestCase
     public function setUp(): void
     {
         $this->request = new Request();
+        $_SERVER['REQUEST_URI'] = '/foo/bar/list';
+        $_SERVER['SCRIPT_NAME'] ='/foo/bar/index.php';
     }
 
     public function test_リクエストで送られてきたURLからbaseURLを取得する()
     {
-        $_SERVER['REQUEST_URI'] = '/foo/bar/list';
-        $_SERVER['SCRIPT_NAME'] ='/foo/bar/index.php';
-
         $baseURL = $this->request->getBaseURL();
         $this->assertEquals('/foo/bar',$baseURL);
+    }
+
+    public function test_リクエストで送られてきたURLからPATH_INFOを取得する()
+    {
+        $baseURL = $this->request->getPathInfo();
+        $this->assertEquals('/list',$baseURL);
     }
 }
