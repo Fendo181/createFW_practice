@@ -4,3 +4,4 @@ composer.lock
 .commit_template
 chap6/.env
 phpdoc
+.phpunit.result.cache
