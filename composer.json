@@ -12,6 +12,7 @@
     },
     "require-dev": {
         "phpdocumentor/phpdocumentor": "2.*",
-        "jms/serializer": "^1.7.0"
+        "jms/serializer": "^1.7.0",
+        "phpunit/phpunit": "^8.0"
     }
 }
