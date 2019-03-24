@@ -15,10 +15,10 @@ class RequestTest extends TestCase
 
     public function test_リクエストで送られてきたURLからbaseURLを取得する()
     {
-        $_SERVER['REQUEST_URI'] = 'http://example.com/foo/bar/index.php';
-        $_SERVER['SCRIPT_NAME'] ='foo/bar/index.php';
+        $_SERVER['REQUEST_URI'] = '/foo/bar/list';
+        $_SERVER['SCRIPT_NAME'] ='/foo/bar/index.php';
 
         $baseURL = $this->request->getBaseURL();
-        $this->assertEquals('foo/bar/','1');
+        $this->assertEquals('/foo/bar',$baseURL);
     }
 }
