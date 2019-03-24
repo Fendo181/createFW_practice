@@ -83,21 +83,22 @@ class Request
 
     /**
      *
-     * スクリプトが実行されるファイルパスを返します。
+     * スクリプトが実行されるベースURL返します。
      *
-     * @return  $scripts_name
+     * @return  $script_path
      */
     public function getBaseURL()
     {
         $script_path = $_SERVER['SCRIPT_NAME'];
         $request_uri = $this->getRequestUri();
 
-        if(0 === strpos($request_uri, $script_path)){
+        // $_SERVER['REQUEST_URI']と$_SERVER[SCRIPT_NAME]が一緒のPATHなら、$_SERVER[SCRIPT_NAME]を返す。
+        if(strpos($request_uri, $script_path) === 0){
             return $script_path;
-        }else if (strpos($request_uri, dirname($script_path))){
-            return rtrim( dirname($script_path),'/');
-        }
+        }else if (strpos($request_uri, dirname($script_path)) === 0){
 
+            return rtrim(dirname($script_path),'/');
+        }
         return '';
     }
 
