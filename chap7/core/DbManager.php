@@ -32,4 +32,20 @@ class DbManager
         $this->connections[$name] = $con;
     }
 
+    /**
+     *
+     * 指定がなければ最初のPDOクラスのインスタンスを返して、$nameがあれば新しいPDOインスタンスを返します
+     *
+     * @param null $name
+     * @return PDOインスタンス
+     */
+    public function getConnection($name = null)
+    {
+        if(is_null($name)){
+            return current($this->connections[$name]);
+        }
+
+        return $this->connections[$name];
+    }
+
 }
