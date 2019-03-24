@@ -18,7 +18,7 @@ class Router
     public function compileRoutes($definitions)
     {
 
-        $router = [];
+        $routes = [];
 
         foreach ($definitions as $url => $params) {
             $tokens = explode('/',ltrim($url,'/'));
@@ -33,6 +33,9 @@ class Router
 
                 $tokens[$i] = $token;
             }
+
+            $patterns = '/'.implode('/',$tokens);
+            $routes[$patterns] = $params;
 
         }
 
