@@ -37,4 +37,29 @@ class Router
         }
 
     }
+
+    /**
+     *
+     * PATH_INFOの情報を受け取り、マッチした場合にarray_mergeで$matchesの中身を$paramsにマージして返す
+     *
+     * @param $path_info
+     * @return array|bool
+     */
+    public function  resolve($path_info)
+    {
+        if(substr($path_info,0,1) === '/'){
+           $path_info = '/'.$path_info;
+        }
+
+        foreach ($this->router as $pattern => $params)
+        {
+            if(preg_match('#^'.$pattern.'$#',$path_info,$matches)){
+                $params = array_merge($params,$matches);
+
+                return $params;
+            }
+        }
+
+        return false;
+    }
 }
