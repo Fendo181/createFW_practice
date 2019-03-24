@@ -4,6 +4,7 @@ class DbManager
 {
     protected $connections = [];
     protected $repository_connection_map = [];
+    protected $repositories = [];
 
     /**
      *
@@ -82,4 +83,24 @@ class DbManager
         return $con;
     }
 
+    /**
+     *
+     * 一度作成したRepositoryクラスのインスタンスを取得する
+     *
+     * @param $repository_name
+     * @return Repositoryクラスのインスタンスを返す
+     */
+    public function get($repository_name)
+    {
+        if(!isset($this->repositories[$repository_name])){
+            $repository_class = $repository_name.'Repository';
+            $con = $this->getConnectionForRepository($repository_name);
+
+            $repository = new $repository_class($con);
+
+            $this->repositories[$repository_class] = $repository;
+        }
+
+        return $this->repositories[$repository_name];
+    }
 }
