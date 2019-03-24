@@ -71,6 +71,9 @@ class Request
     }
 
     /**
+     *
+     * REQUEST_URIを返す
+     *
      * @return $_SERVER['REQUEST_URI']
      */
     public function  getRequestUri()
