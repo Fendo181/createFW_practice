@@ -98,6 +98,7 @@ class Request
             return rtrim( dirname($script_path),'/');
         }
 
+        return '';
     }
 
     /**
