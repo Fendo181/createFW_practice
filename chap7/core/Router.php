@@ -52,9 +52,11 @@ class Router
      */
     public function  resolve($path_info)
     {
-        if(substr($path_info,0,1) === '/'){
-           $path_info = '/'.$path_info;
+        if(substr($path_info,0,1) !== '/'){
+            $path_info = '/'.$path_info;
         }
+
+        eval(\Psy\sh());
 
         foreach ($this->router as $pattern => $params)
         {
