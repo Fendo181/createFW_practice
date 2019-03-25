@@ -24,8 +24,8 @@ class RouterTest extends TestCase {
 
     public function test_compileRoutes()
     {
-        eval(\Psy\sh());
-//        assertEquals('',);
-
+        $this->assertArrayHasKey('/user/(?P<id>[^/]+)', $this->routes->getRouter());
+        $this->assertEquals('user',$this->routes->getRouter()['/user/(?P<id>[^/]+)']['controller']);
+        $this->assertEquals('edit',$this->routes->getRouter()['/user/(?P<id>[^/]+)']['action']);
     }
 }
