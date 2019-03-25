@@ -23,6 +23,14 @@ abstract class Controller
     }
 
 
+    /**
+     *
+     * Applicationクラスから呼び出されて実際に実行するメソッド
+     *
+     * @param $action
+     * @param array $params
+     * @return mixed
+     */
     public function run($action, $params = [])
     {
         $this->action_name = $action;
@@ -42,7 +50,6 @@ abstract class Controller
     /**
      *
      *  ビューファイルの読み込み処理をラッピングしたメソッド
-     *
      *
      * @param array $variables
      * @param null $template
