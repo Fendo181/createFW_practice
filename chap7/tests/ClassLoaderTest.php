@@ -23,9 +23,6 @@ class ClassLoaderTest extends TestCase
 
         $this->assertEquals('/Users/endu/src/fendo181/mvcfw/chap7/core',$this->loader->getDir()['0']);
         $this->assertEquals('/Users/endu/src/fendo181/mvcfw/chap7/view',$this->loader->getDir()['1']);
-
-
     }
-
 
 }
