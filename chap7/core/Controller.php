@@ -71,6 +71,36 @@ abstract class Controller
         return $view->render($path,$variables,$layout);
     }
 
+    /**
+     *
+     * 404画面に遷移させるメソッド
+     *
+     * @throws HttpNotFoundException
+     */
+    protected function fowward404()
+    {
+        throw new HttpNotFoundException('Forwarded 404 page from'.$this->controller_name . '/' . $this->action_name);
+    }
 
+    /**
+     *
+     * URLを引数として受け取り、Responseオブジェクトにリダイレクトさせるように設定する
+     *
+     * @param $url
+     */
+    protected function redirect($url)
+    {
+        if(!preg_match('#https?://#',$url)){
+            $protocol = $this->request->isSSl() ? 'https//' : 'http';
+            $host = $this->request->getHost();
+            $base_url = $this->request->getBaseUrl();
+
+            $url = $protocol. $host. $url;
+        }
+
+        $this->response->setStatusCode(302,'Found');
+        // リダイレクトする
+        $this->response->setHttpHeader('Location',$url);
+    }
 
 }
