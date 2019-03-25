@@ -14,7 +14,12 @@ class BbsApplication extends Application
 
     public function registerRoutes()
     {
-        return [];
+        return [
+            '/'
+            => ['controller' => 'post', 'action' => 'index'],
+            '/post/'
+            => ['controller' => 'post', 'action' => 'send'],
+        ];
     }
 
     protected function configure()
