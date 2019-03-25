@@ -176,16 +176,21 @@ abstract class Application
      */
     public function run()
     {
-        $params = $this->router->resolve($this->request->getPathInfo());
-        if($params === false){
-            throw  new HttpNotFoundException('No router found for'.$this->request->getPathInfo());
+        try{
+            $params = $this->router->resolve($this->request->getPathInfo());
+            if($params === false){
+                throw  new HttpNotFoundException('No router found for'.$this->request->getPathInfo());
+            }
+
+            $controller = $params['controller'];
+            $action = $params['action'];
+            $this->runAction($controller,$action,$params);
+        }catch (HttpNotFoundException $e){
+            $this->render404Page($e);
         }
-
-        $controller = $params['controller'];
-        $action = $params['action'];
-
-        $this->runAction($controller,$action,$params);
         $this->response->send();
+
+
     }
 
     /**
@@ -237,5 +242,26 @@ abstract class Application
         }
 
         return new $controller_file;
+    }
+
+    public function render404Page($e)
+    {
+        $this->response->setStatusCode(404,'Not Found');
+        $message = $this->getDebugMode() ? $e->getMessage() : 'Sorry Page not Found :-(';
+        $message = htmlspecialchars($message,ENT_QUOTES,'UTF-8');
+
+        $this->response->setContent(
+<<<EOF
+            <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                <title>404 Not FOund</title>
+            </head>
+            <body>
+             { $message }
+            </body>
+            </html>
+EOF
+        );
     }
 }
