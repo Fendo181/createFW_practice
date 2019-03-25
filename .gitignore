@@ -3,3 +3,6 @@
 composer.lock
 .commit_template
 chap6/.env
+chap7/.env
+phpdoc
+.phpunit.result.cache
