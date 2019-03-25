@@ -56,11 +56,10 @@ class Router
             $path_info = '/'.$path_info;
         }
 
-        eval(\Psy\sh());
 
         foreach ($this->router as $pattern => $params)
         {
-            if(preg_match('#^'.$pattern.'$#',$path_info,$matches)){
+            if(preg_match('#^'.$pattern.'$#', $path_info, $matches)){
                 $params = array_merge($params,$matches);
 
                 return $params;
