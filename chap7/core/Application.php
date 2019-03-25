@@ -56,7 +56,7 @@ abstract class Application
         $this->request = new Response();
         $this->request = new Session();
         $this->db_manager = new DbManager();
-        $this->router = new Router($this->registerRouter());
+        $this->router = new Router($this->registerRoutes());
     }
 
     protected function configure()
