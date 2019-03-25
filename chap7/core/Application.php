@@ -241,9 +241,9 @@ abstract class Application
 
             require_once $controller_file;
 
-//            if(!class_exists($controller_file)){
-//                return false;
-//            }
+            if(!class_exists($controller_file)){
+                return false;
+            }
         }
 
         return new $controller_class($this);
