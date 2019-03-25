@@ -39,5 +39,38 @@ abstract class Controller
         return $content;
     }
 
+    /**
+     *
+     *  ビューファイルの読み込み処理をラッピングしたメソッド
+     *
+     *
+     * @param array $variables
+     * @param null $template
+     * @param string $layout
+     * @return string
+     */
+    protected function rendar($variables = [], $template = null, $layout = 'layout')
+    {
+        $defaults = [
+            'request' => $this->request,
+            'base_url' => $this->request->baseURl(),
+            'sesssion' => $this->session,
+
+        ];
+
+        // Viewのインスタンスを生成する
+        $view = new  View($this->application->getViewDir(),$defaults);
+
+        if(is_null($template)){
+            $template = $this->action_name;
+        }
+
+        // UseControllerだったら、user/$templateとなる
+        $path = $this->controller_name . '/' . $template;
+
+        return $view->render($path,$variables,$layout);
+    }
+
+
 
 }
