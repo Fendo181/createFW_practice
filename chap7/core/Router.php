@@ -21,6 +21,7 @@ class Router
         $routes = [];
 
         foreach ($definitions as $url => $params) {
+//            eval(\Psy\sh());
             $tokens = explode('/',ltrim($url,'/'));
             foreach ($tokens as $i => $token){
                 if(strpos($token,':') === 0){
@@ -36,8 +37,9 @@ class Router
 
             $patterns = '/'.implode('/',$tokens);
             $routes[$patterns] = $params;
-
         }
+
+        return $routes;
 
     }
 
