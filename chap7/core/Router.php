@@ -65,4 +65,16 @@ class Router
 
         return false;
     }
+
+    /**
+     * routerを取得する
+     *
+     * @return $router
+     */
+    public function getRouter()
+    {
+        return $this->router;
+    }
+
+
 }
