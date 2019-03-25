@@ -246,8 +246,6 @@ abstract class Application
 //            }
         }
 
-        eval(\Psy\sh());
-
         return new $controller_class($this);
     }
 
