@@ -84,7 +84,7 @@ abstract class Controller
     {
         $defaults = [
             'request' => $this->request,
-            'base_url' => $this->request->baseURl(),
+            'base_url' => $this->request->getbaseURl(),
             'sesssion' => $this->session,
 
         ];
