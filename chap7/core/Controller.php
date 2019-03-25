@@ -53,6 +53,13 @@ abstract class Controller
         return $content;
     }
 
+    /**
+     *
+     * ログインが必要か判定を行う
+     *
+     * @param $action
+     * @return bool|void
+     */
     public function needsAuthentication($action)
     {
         if($this->auth_actions == true
