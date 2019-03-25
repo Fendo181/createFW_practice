@@ -22,12 +22,17 @@ class DbManager
            'options' => [],
         ],$params);
 
-        $con = new PDO(
-            $params['dsn'],
-            $params['user'],
-            $params['password'],
-            $params['options']
-        );
+        try {
+            $con = new PDO(
+                $params['dsn'],
+                $params['user'],
+                $params['password'],
+                $params['options']
+            );
+        }catch (PDOException $e){
+            echo 'Connection failed: ' . $e->getMessage();
+        }
+
 
         $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 

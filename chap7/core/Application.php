@@ -53,10 +53,10 @@ abstract class Application
     public function initialize()
     {
         $this->request = new Request();
-        $this->request = new Response();
-        $this->request = new Session();
+        $this->response = new Response();
+        $this->session = new Session();
         $this->db_manager = new DbManager();
-        $this->router = new Router($this->registerRouter());
+        $this->router = new Router($this->registerRoutes());
     }
 
     protected function configure()
@@ -232,7 +232,7 @@ abstract class Application
     public function findController($controller_class)
     {
         if(!class_exists($controller_class)){
-            $controller_file = $this->getControllerDir(). '/' . $controller_class.'php';
+            $controller_file = $this->getControllerDir(). '/' . $controller_class.'.php';
         }
 
         if(!is_readable($controller_file)){
@@ -246,7 +246,7 @@ abstract class Application
             }
         }
 
-        return new $controller_file;
+        return new $controller_class($this);
     }
 
     public function render404Page($e)

@@ -45,7 +45,7 @@ class ClassLoader
     public function loadClass($class)
     {
         foreach ($this->dir as $dir){
-            $file = $dir . '/' . $class.'php';
+            $file = $dir . '/' . $class.'.php';
             // Tells whether a file exists and is readable
             if(is_readable($file)){
                 require $file;

@@ -80,11 +80,11 @@ abstract class Controller
      * @param string $layout
      * @return string
      */
-    protected function rendar($variables = [], $template = null, $layout = 'layout')
+    protected function render($variables = [], $template = null, $layout = 'layout')
     {
         $defaults = [
             'request' => $this->request,
-            'base_url' => $this->request->baseURl(),
+            'base_url' => $this->request->getbaseURl(),
             'sesssion' => $this->session,
 
         ];
