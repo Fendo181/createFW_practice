@@ -13,7 +13,7 @@ abstract class Controller
     public function __construct($application)
     {
         // Ccontrollerが10文字なので、後ろの10文字を取り除いて、クラス名を小文字にする
-        $this->controller_name = strtolower(substr(get_class($this),0,-10));
+        $this->controller_name = strtolower(substr(get_class($this), 0, -10));
 
         $this->application = $application;
         $this->request = $application->getRequest();
@@ -35,9 +35,9 @@ abstract class Controller
     {
         $this->action_name = $action;
 
-        $action_methods = $action.'Action';
+        $action_methods = $action . 'Action';
 
-        if(!(method_exists($this,$action_methods))){
+        if (!(method_exists($this, $action_methods))) {
             $this->forward404();
         }
 
@@ -66,16 +66,16 @@ abstract class Controller
         ];
 
         // Viewのインスタンスを生成する
-        $view = new  View($this->application->getViewDir(),$defaults);
+        $view = new  View($this->application->getViewDir(), $defaults);
 
-        if(is_null($template)){
+        if (is_null($template)) {
             $template = $this->action_name;
         }
 
         // UseControllerだったら、user/$templateとなる
         $path = $this->controller_name . '/' . $template;
 
-        return $view->render($path,$variables,$layout);
+        return $view->render($path, $variables, $layout);
     }
 
     /**
@@ -86,7 +86,7 @@ abstract class Controller
      */
     protected function fowward404()
     {
-        throw new HttpNotFoundException('Forwarded 404 page from'.$this->controller_name . '/' . $this->action_name);
+        throw new HttpNotFoundException('Forwarded 404 page from' . $this->controller_name . '/' . $this->action_name);
     }
 
     /**
@@ -97,17 +97,66 @@ abstract class Controller
      */
     protected function redirect($url)
     {
-        if(!preg_match('#https?://#',$url)){
+        if (!preg_match('#https?://#', $url)) {
             $protocol = $this->request->isSSl() ? 'https//' : 'http';
             $host = $this->request->getHost();
             $base_url = $this->request->getBaseUrl();
 
-            $url = $protocol. $host. $url;
+            $url = $protocol . $host . $url;
         }
 
-        $this->response->setStatusCode(302,'Found');
+        $this->response->setStatusCode(302, 'Found');
         // リダイレクトする
-        $this->response->setHttpHeader('Location',$url);
+        $this->response->setHttpHeader('Location', $url);
     }
 
+    // CSRF対策
+
+    /**
+     *
+     * CSRF対策の為、トークンを生成し、サーバ上に保存するためにセッションに格納を行う
+     *
+     * @param $form_name
+     * @return csrf_tpken
+     */
+    protected function generateCsrfToken($form_name)
+    {
+        $key = 'csrf_tokens/' . $form_name;
+        $tokens = $this->session->get($key, []);
+        if (count($tokens) > 10) {
+            array_shift($tokens);
+        }
+
+        $token = sha1($form_name . session_id() . microtime());
+        $tokens[] = $token;
+
+        $this->session->set($key, $tokens);
+
+        return $token;
+    }
+
+    /**
+     *
+     * セッション上に格納されたCSRFトークンを確認し一度破棄してから再度生成します
+     *
+     * @param $form_name
+     * @param $token
+     * @return bool
+     */
+    protected function checkCsrfTokens($form_name, $token)
+    {
+        $key = 'csrf_tokens/' . $form_name;
+        $tokens = $this->session->get($key,[]);
+
+        $pos = array_search($token, $tokens, true);
+
+        if($pos !== false){
+            unset($tokens[$pos]);
+            $this->session->set($key,$tokens);
+
+            return true;
+        }
+
+        return false;
+    }
 }
