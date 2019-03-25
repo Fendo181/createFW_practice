@@ -15,13 +15,13 @@ class RequestTest extends TestCase
         $_SERVER['SCRIPT_NAME'] ='/foo/bar/index.php';
     }
 
-    public function test_リクエストで送られてきたURLからbaseURLを取得する()
+    public function test_getBaseURL()
     {
         $baseURL = $this->request->getBaseURL();
         $this->assertEquals('/foo/bar',$baseURL);
     }
 
-    public function test_リクエストで送られてきたURLからPATH_INFOを取得する()
+    public function test_getPathInfo()
     {
         $pathInfo = $this->request->getPathInfo();
         $this->assertEquals('/list',$pathInfo);
