@@ -232,7 +232,7 @@ abstract class Application
     public function findController($controller_class)
     {
         if(!class_exists($controller_class)){
-            $controller_file = $this->getControllerDir(). '/' . $controller_class.'php';
+            $controller_file = $this->getControllerDir(). '/' . $controller_class.'.php';
         }
 
         if(!is_readable($controller_file)){
@@ -241,12 +241,14 @@ abstract class Application
 
             require_once $controller_file;
 
-            if(!class_exists($controller_file)){
-                return false;
-            }
+//            if(!class_exists($controller_file)){
+//                return false;
+//            }
         }
 
-        return new $controller_file;
+        eval(\Psy\sh());
+
+        return new $controller_class($this);
     }
 
     public function render404Page($e)
