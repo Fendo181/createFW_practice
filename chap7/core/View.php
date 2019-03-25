@@ -48,7 +48,7 @@ class View
      */
     public function render($_path, $_variables =[], $_layout = false)
     {
-        $_file = $this->base_dir . '/'.$_path.'php';
+        $_file = $this->base_dir . '/'.$_path.'.php';
 
         extract(array_merge($_path,$_variables));
 
