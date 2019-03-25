@@ -23,4 +23,21 @@ abstract class Controller
     }
 
 
+    public function run($action, $params = [])
+    {
+        $this->action_name = $action;
+
+        $action_methods = $action.'Action';
+
+        if(!(method_exists($this,$action_methods))){
+            $this->forward404();
+        }
+
+        // 可変関数で動的にメソッドを変えるようにする
+        $content = $this->$action_methods($params);
+
+        return $content;
+    }
+
+
 }
