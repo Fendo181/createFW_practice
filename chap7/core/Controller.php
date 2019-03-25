@@ -9,6 +9,7 @@ abstract class Controller
     protected $response;
     protected $session;
     protected $db_manager;
+    protected $auth_actions = [];
 
     public function __construct($application)
     {
@@ -41,11 +42,28 @@ abstract class Controller
             $this->forward404();
         }
 
+        //ログイン判定処理
+        if($this->needsAuthentication($action) && !$this->session->isAuthenticated()){
+            throw new UnauthorizedActionException();
+        }
+
         // 可変関数で動的にメソッドを変えるようにする
         $content = $this->$action_methods($params);
 
         return $content;
     }
+
+    public function needsAuthentication($action)
+    {
+        if($this->auth_actions == true
+            || (is_array($this->auth_actions)) && in_array($action, $this->auth_actions)){
+            return true;
+        }return{
+            return false;
+    }
+    }
+
+
 
     /**
      *
