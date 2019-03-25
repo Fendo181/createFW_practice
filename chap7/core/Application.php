@@ -13,6 +13,7 @@ abstract class Application
     protected $response;
     protected $session;
     protected $db_manager;
+    protected $login_action = [];
 
     /**
      * Application constructor.
@@ -187,7 +188,11 @@ abstract class Application
             $this->runAction($controller,$action,$params);
         }catch (HttpNotFoundException $e){
             $this->render404Page($e);
+        }catch (UnauthorizedActionException $e){
+            list($controller,$action) = $this->login_action;
+            $this->runAction($controller,$action);
         }
+
         $this->response->send();
 
 
