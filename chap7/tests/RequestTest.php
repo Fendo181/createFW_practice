@@ -23,7 +23,7 @@ class RequestTest extends TestCase
 
     public function test_リクエストで送られてきたURLからPATH_INFOを取得する()
     {
-        $baseURL = $this->request->getPathInfo();
-        $this->assertEquals('/list',$baseURL);
+        $pathInfo = $this->request->getPathInfo();
+        $this->assertEquals('/list',$pathInfo);
     }
 }
