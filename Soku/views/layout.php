@@ -12,6 +12,9 @@
         <h2>Layoutファイルを使って表示してます</h2>
     </div>
 
+    <a href="<?php echo $base_url; ?>/">ホーム画面</a>
+    <a href="<?php echo $base_url; ?>/hello">Hello画面</a>
+    <a href="<?php echo $base_url; ?>/posts">投稿先一覧画面</a>
 
     <div id="main">
         <?php echo $_content; ?>
