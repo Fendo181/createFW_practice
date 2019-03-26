@@ -128,7 +128,7 @@ abstract class Application
      *
      * Controllerが置かれているディレクトリを取得する
      *
-     * @return Controllerファイルが置かれているディレクトリ
+     * @return string Controllerファイルが置かれているディレクトリ名を含むパス
      */
     public function getControllerDir()
     {
@@ -140,7 +140,7 @@ abstract class Application
      *
      * Viewが置かれているディレクトリを取得する
      *
-     * @return Viewファイルが置かれているディレクトリ
+     * @return string Viewファイルが置かれているディレクトリ名を含むパス
      */
     public function getViewDir()
     {
@@ -151,7 +151,7 @@ abstract class Application
      *
      * Modelが置かれているディレクトリを取得する
      *
-     * @return Modelファイルが置かれているディレクトリ
+     * @return string Modelファイルが置かれているディレクトリ名を含むパス
      */
     public function getModelDir()
     {
@@ -188,13 +188,9 @@ abstract class Application
             $this->runAction($controller,$action,$params);
         }catch (HttpNotFoundException $e){
             $this->render404Page($e);
-        }catch (UnauthorizedActionException $e){
-            list($controller,$action) = $this->login_action;
-            $this->runAction($controller,$action);
         }
 
         $this->response->send();
-
 
     }
 
