@@ -8,4 +8,9 @@ class PostController extends Controller
     {
         return $this->render();
     }
+
+    public function homeAction()
+    {
+        return $this->render();
+    }
 }
