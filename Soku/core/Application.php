@@ -219,26 +219,23 @@ abstract class Application
     }
 
     /**
+     * 指定されたコントローラ名から対応するControllerオブジェクトを取得
      *
-     * コントローラークラスが読み込まれてない場合にクラスファイルを読み込みます。
-     *
-     * @param $controller_class
-     * @return Controllerインスタンス | false
+     * @param string $controller_class
+     * @return Controller
      */
-    public function findController($controller_class)
+    protected function findController($controller_class)
     {
-        if(!class_exists($controller_class)){
-            $controller_file = $this->getControllerDir(). '/' . $controller_class.'.php';
-        }
-
-        if(!is_readable($controller_file)){
-            return false;
-        }else{
-
-            require_once $controller_file;
-
-            if(!class_exists($controller_file)){
+        if (!class_exists($controller_class)) {
+            $controller_file = $this->getControllerDir() . '/' . $controller_class . '.php';
+            if (!is_readable($controller_file)) {
                 return false;
+            } else {
+                require_once $controller_file;
+
+                if (!class_exists($controller_class)) {
+                    return false;
+                }
             }
         }
 
