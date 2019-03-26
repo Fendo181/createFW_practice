@@ -27,7 +27,7 @@ class View
 
     /**
      *
-     * 変数layout_variablesに$nameをキーとした$valueを値としいて格納する
+     * 変数layout.phpに$nameをキーとした$valueを値としいて格納する
      *
      * @param $name
      * @param $value
@@ -38,35 +38,35 @@ class View
     }
 
     /**
+     * ビューファイルをレンダリング
      *
-     *  ビューファイルの読み込みを行う
-     *
-     * @param $_path
-     * @param array $_variables
-     * @param bool $_layout
+     * @param string $_path viewファイルのパス
+     * @param array $_variables 表示する値
+     * @param mixed $_layout
      * @return string
      */
-    public function render($_path, $_variables =[], $_layout = false)
+    public function viewRender($_path, $_variables = [ ], $_layout = false)
     {
-        $_file = $this->base_dir . '/'.$_path.'.php';
+        $_file = $this->base_dir . '/' . $_path . '.php';
 
-        extract(array_merge($_path,$_variables));
+        extract(array_merge($this->defaults, $_variables));
 
-        // アウトプットバッファリング
+        // アウトプットバッファリグ開始
         ob_start();
-        // 自動フラッシュを無効化する
+        // バッファを超えた場合に自動でフラッシュする設定をOFFにする
         ob_implicit_flush(0);
 
+        // viewファイル読み込む
         require $_file;
 
+        // $contentに
         $content = ob_get_clean();
 
-        if($_layout){
+        if ($_layout) {
             $content = $this->render($_layout,
-                array_merge($this->layout_variables,
-                    [
+                array_merge($this->layout_variables, array(
                         '_content' => $content,
-                    ]
+                    )
                 ));
         }
 
