@@ -92,6 +92,7 @@ abstract class Controller
         // Viewのインスタンスを生成する
         $view = new  View($this->application->getViewDir(), $defaults);
 
+        // テンプレート名を指定してなかったら、アクション名がテンプレート名になる
         if (is_null($template)) {
             $template = $this->action_name;
         }
@@ -99,7 +100,8 @@ abstract class Controller
         // UseControllerだったら、user/$templateとなる
         $path = $this->controller_name . '/' . $template;
 
-        return $view->render($path, $variables, $layout);
+        // Viewクラスのrenderメソッド
+        return $view->viewRender($path, $variables, $layout);
     }
 
     /**
