@@ -42,7 +42,10 @@ class PostApplication extends Application
     protected function registerRoutes()
     {
         return [
-            '/hello' => ['controller' => 'post', 'action' => 'hello']
+            '/'
+                => ['controller' => 'post', 'action' => 'home'],
+            '/hello'
+                => ['controller' => 'post', 'action' => 'hello']
         ];
     }
 
