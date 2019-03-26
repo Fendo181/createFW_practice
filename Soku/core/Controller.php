@@ -90,7 +90,7 @@ abstract class Controller
         ];
 
         // Viewのインスタンスを生成する
-        $view = new  View($this->application->getViewDir(), $defaults);
+        $view = new View($this->application->getViewDir(), $defaults);
 
         // テンプレート名を指定してなかったら、アクション名がテンプレート名になる
         if (is_null($template)) {
