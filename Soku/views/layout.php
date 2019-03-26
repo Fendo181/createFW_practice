@@ -2,13 +2,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>
-        <?php if (isset($title)): echo $this->escape($title) . ' - ';
-        endif; ?>サンプルアプリケーション
+        <?php if (isset($title)): echo $this->escape($title) . '-Soku MVC FW';
+        endif; ?>
     </title>
 </head>
 <body>
     <div id="header">
-        <h1><a href="<?php echo $base_url; ?>/">>遠藤一言掲示板</a></h1>
+        <h1><a href="<?php echo $base_url; ?>/">Welcome Soku MVC FW!</a></h1>
+        <h2>Hello! </h2>
     </div>
 
 
