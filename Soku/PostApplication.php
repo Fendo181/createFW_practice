@@ -42,8 +42,7 @@ class PostApplication extends Application
     protected function registerRoutes()
     {
         return [
-            '/hello'
-            => array('controller' => 'post', 'action' => 'hello')
+            '/hello' => ['controller' => 'post', 'action' => 'hello']
         ];
     }
 
