@@ -13,4 +13,9 @@ class PostController extends Controller
     {
         return $this->render();
     }
+
+    public function postsAction()
+    {
+        return $this->render();
+    }
 }

@@ -45,7 +45,9 @@ class PostApplication extends Application
             '/'
                 => ['controller' => 'post', 'action' => 'home'],
             '/hello'
-                => ['controller' => 'post', 'action' => 'hello']
+                => ['controller' => 'post', 'action' => 'hello'],
+            '/posts'
+                => ['controller' => 'post', 'action' => 'posts'],
         ];
     }
 
