@@ -7,10 +7,10 @@
         }
     ],
     "require": {
-        "psy/psysh": "^0.9.9",
         "vlucas/phpdotenv": "^3.3"
     },
     "require-dev": {
+        "psy/psysh": "^0.9.9",
         "phpdocumentor/phpdocumentor": "2.*",
         "jms/serializer": "^1.7.0",
         "phpunit/phpunit": "^8.0"
