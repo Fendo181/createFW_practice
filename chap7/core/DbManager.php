@@ -16,10 +16,10 @@ class DbManager
     public function connect($name,$params)
     {
         $params = array_merge([
-           'dsn' => null,
-           'user' => '',
-           'password' => '',
-           'options' => [],
+            'dsn' => null,
+            'user' => '',
+            'password' => '',
+            'options' => [],
         ],$params);
 
         try {
@@ -49,7 +49,7 @@ class DbManager
     public function getConnection($name = null)
     {
         if(is_null($name)){
-            return current($this->connections[$name]);
+            return current($this->connections);
         }
 
         return $this->connections[$name];
@@ -103,7 +103,7 @@ class DbManager
 
             $repository = new $repository_class($con);
 
-            $this->repositories[$repository_class] = $repository;
+            $this->repositories[$repository_name] = $repository;
         }
 
         return $this->repositories[$repository_name];
