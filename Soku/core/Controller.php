@@ -110,7 +110,7 @@ abstract class Controller
      *
      * @throws HttpNotFoundException
      */
-    protected function fowward404()
+    protected function forward404()
     {
         throw new HttpNotFoundException('Forwarded 404 page from' . $this->controller_name . '/' . $this->action_name);
     }
