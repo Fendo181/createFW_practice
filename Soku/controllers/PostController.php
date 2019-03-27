@@ -14,9 +14,9 @@ class PostController extends Controller
         return $this->render();
     }
 
+    // 投稿先一覧を取得する
     public function postsAction()
     {
-        //DBから投稿先一覧を取得する
         $posts = $this->db_manager
                         ->get('Post')
                         ->fetchAllPosts();
