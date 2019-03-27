@@ -16,6 +16,15 @@ class PostController extends Controller
 
     public function postsAction()
     {
-        return $this->render();
+        //DBから投稿先一覧を取得する
+        $posts = $this->db_manager
+                        ->get('Post')
+                        ->fetchAllPosts();
+
+        return $this->render(
+            [
+                'posts' => $posts
+            ]
+        );
     }
 }
