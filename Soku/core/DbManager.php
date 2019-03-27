@@ -103,7 +103,7 @@ class DbManager
 
             $repository = new $repository_class($con);
 
-            $this->repositories[$repository_class] = $repository;
+            $this->repositories[$repository_name] = $repository;
         }
 
         return $this->repositories[$repository_name];
