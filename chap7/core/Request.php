@@ -39,6 +39,22 @@ class Request
         return $default;
     }
 
+    /**
+     * POSTパラメータを取得
+     *
+     * @param string $name
+     * @param mixed $default 指定したキーが存在しない場合のデフォルト値
+     * @return mixed
+     */
+    public function getPost($name, $default = null)
+    {
+        if (isset($_POST[$name])) {
+            return $_POST[$name];
+        }
+
+        return $default;
+    }
+
 
     /**
      *
