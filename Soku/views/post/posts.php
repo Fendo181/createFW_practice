@@ -10,7 +10,7 @@ $this->setLayoutVar('title','Hello画面');
 
     <!-- エラー処理   -->
     <?php if (isset($errors) && count($errors) > 0): ?>
-        <?php echo $this->render('errors', ['errors' => $errors]) ?>
+        <?php echo $this->viewRender('errors', ['errors' => $errors]) ?>
     <?php endif; ?>
 
     <p>
