@@ -65,8 +65,9 @@ class PostController extends Controller
         return $this->render([
             'errors'   => $errors,
             'commnet'  => $comment,
-            'commnet'  => $name,
-            ]);
+            'name'  => $name,
+            // 明示的にpostsを入れないと、テンプレート名は$actionName(post)になる
+            ],'posts');
 
     }
 }
