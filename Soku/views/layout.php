@@ -9,7 +9,6 @@
 <body>
     <div id="header">
         <h1><a href="<?php echo $base_url; ?>/">Welcome Soku MVC FW!</a></h1>
-        <h2>Layoutファイルを使って表示してます</h2>
     </div>
 
     <a href="<?php echo $base_url; ?>/">ホーム画面</a>
