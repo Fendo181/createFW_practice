@@ -38,9 +38,13 @@ class PostController extends Controller
             $this->forward404();
         }
 
+        // posts画面にリダイレクトさせる為、投稿先一覧を取得する
+        $posts = $this->db_manager
+            ->get('Post')
+            ->fetchAllPosts();
+
         // バリデーション処理
         $errors = [];
-
 
         $comment = $this->request->getPost('comment');
         $name = $this->request->getPost('name');
@@ -58,7 +62,6 @@ class PostController extends Controller
         // エラーがなかったら
         if (count($errors) === 0) {
             $this->db_manager->get('Post')->insert($name, $comment);
-
             return $this->redirect('/posts');
         }
 
@@ -66,8 +69,8 @@ class PostController extends Controller
             'errors'   => $errors,
             'commnet'  => $comment,
             'name'  => $name,
+            'posts' => $posts
             // 明示的にpostsを入れないと、テンプレート名は$actionName(post)になる
             ],'posts');
-
     }
 }
