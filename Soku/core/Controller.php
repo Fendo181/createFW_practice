@@ -101,7 +101,7 @@ abstract class Controller
         $path = $this->controller_name . '/' . $template;
 
         // Viewクラスのrenderメソッド
-        return $view->viewRender($path, $variables, $layout);
+        return $view->renderView($path, $variables, $layout);
     }
 
     /**

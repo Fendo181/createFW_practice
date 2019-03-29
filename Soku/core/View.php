@@ -45,7 +45,7 @@ class View
      * @param mixed $_layout
      * @return string
      */
-    public function viewRender($_path, $_variables = [ ], $_layout = false)
+    public function renderView($_path, $_variables = [ ], $_layout = false)
     {
         $_file = $this->base_dir . '/' . $_path . '.php';
 
@@ -63,7 +63,7 @@ class View
         $content = ob_get_clean();
 
         if ($_layout) {
-            $content = $this->viewRender($_layout,
+            $content = $this->renderView($_layout,
                 array_merge($this->layout_variables, array(
                         '_content' => $content,
                     )
