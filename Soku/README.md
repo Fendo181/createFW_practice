@@ -13,3 +13,5 @@ Soku Framework はphperkaigi2019向けに作成したサンプルフレームワ
 ### アプリケーションの全体図
 
 ![image](https://user-images.githubusercontent.com/13227145/55271527-7da3e600-52f1-11e9-9b9f-ae4b11ec16d8.png)
+
+参考:[フレームワークを作りながらLaravelのアーキテクチャを学ぶ](https://speakerdeck.com/fendo181/huremuwakuwozuo-rinagaralaravelfalseakitekutiyawoxue-bu)
