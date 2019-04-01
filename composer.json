@@ -7,7 +7,8 @@
         }
     ],
     "require": {
-        "vlucas/phpdotenv": "^3.3"
+        "vlucas/phpdotenv": "^3.3",
+        "illuminate/database": "^5.8"
     },
     "require-dev": {
         "psy/psysh": "^0.9.9",
